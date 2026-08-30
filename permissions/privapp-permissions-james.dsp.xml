@@ -1,0 +1,9 @@
+<? xml version="1.0" encoding="utf-8" ?>
+<permissions>
+    <privapp-permissions package="james.dsp">
+        <permission name="android.permission.DUMP"/>
+        <permission name="android.permission.MODIFY_AUDIO_ROUTING"/>
+        <permission name="android.permission.QUERY_AUDIO_STATE"/>
+        <permission name="android.permission.MODIFY_AUDIO_SETTINGS_PRIVILEGED"/>
+    </privapp-permissions>
+</permissions>

@@ -1,0 +1,61 @@
+soong_namespace{
+}
+
+android_app_import {
+	name: "JamesDSPManager",
+	owner: "JamesDSP",
+	apk: "system-ext/app/JamesDSPManager/JamesDSPManager.apk",
+	certificate: "platform",
+	skip_preprocessed_apk_checks: true,
+	privileged: true,
+	dex_preopt: {
+		enabled: false,
+	},
+	overrides: ["AudioFX", "MusicFX"],
+	system_ext_specific: true,
+	    optional_uses_libs: [
+        "androidx.window.extensions",
+        "androidx.window.sidecar",
+    ],
+}
+
+cc_prebuilt_library_shared {
+	name: "libjamesdsp",
+	installable: true,
+	strip: {
+		none:true,
+	},
+
+	target: {
+		android_arm: {
+			srcs: ["vendor/lib/soundfx/libjamesdsp.so"],
+			shared_libs: [
+				"liblog",
+				"libm",
+				"libdl",
+				"libc",
+			],
+		},
+		android_arm64: {
+			srcs: ["vendor/lib64/soundfx/libjamesdsp.so"],
+			shared_libs: [
+				"liblog",
+				"libm",
+				"libdl",
+				"libc",
+			],
+		},
+	},
+	compile_multilib: "both",
+	relative_install_path: "soundfx",
+	vendor: true,
+	prefer: true,
+}
+
+prebuilt_etc {
+	name: "privapp-permissions-james.dsp.xml",
+	src: "permissions/privapp-permissions-james.dsp.xml",
+	sub_dir: "permissions",
+	system_ext_specific: true,
+}
+
